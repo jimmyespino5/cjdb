@@ -1,0 +1,75 @@
+body{
+    background-color: rgba(244, 244, 244, 0.50);
+}
+nav{
+    background-color:rgba(233, 245, 19, 0.70);
+}
+.navbar_x.pined{
+    position: fixed;
+    top:0px;
+    z-index:5;
+    background-color:rgba(233, 245, 19, 0.90);
+    width: 100%;
+}
+
+.botones{
+    display: inline-block;
+    vertical-align: top;
+}
+#formulario{
+    margin-top: 15px !important;
+}
+/*ESTA ES LA PROGRAMACION DEL BANNER*/
+.slider{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+  
+.slider .controls ul{
+    padding:0px;
+    text-align: center;
+    position: absolute;
+    bottom:1em;
+    margin:0px;
+    width:100%;
+    z-index: 5;
+}
+
+.slider .controls li{
+    list-style-type: none;
+    background-color: #444;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    box-shadow:0px 0px 5px rgba(0,0,0,0.4);
+    margin-right: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.slider .controls li.active{
+    background-color: rgb(50,50,150);
+}
+
+.slider .container{
+    white-space: nowrap;
+    position: relative;
+    transition: all 0.3s;
+    left:0px;
+    padding: 0;
+}
+
+.slider .container *{
+    white-space: normal;
+}
+
+.slider img{
+    width: 100%;
+    display: inline-block;
+    margin-right: -4px;
+    height: 100%;
+} 
+
+/*ACA TERMINA PROGRAMACION DEL BANNER*/
