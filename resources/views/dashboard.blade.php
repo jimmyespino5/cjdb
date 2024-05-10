@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    Perfil: {{ $user->name }} 
+    Delegado: {{ $user->name }} 
 @endsection
 
 @section('contenido')
@@ -10,26 +10,21 @@
     <div class="flex justify-center">
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col items-center md:flex-row">
             <div class="w-8/12 lg:w-6/12 px-5">
-                <img src="{{asset('img/usuario.svg')}}" alt="imagen usuario">
+                <img src="{{$teams->first()->logo ? asset('logos').'/'.$teams->first()->logo : asset('img/sin-logo.jpg')}}" alt="imagen usuario">
+                {{-- <img src="{{asset('img/sin-logo.jpg')}}" alt="imagen usuario"> --}}
             </div>
             <div class="md:w-8/12 lg:w-6/12 px-5 flex flex-col items-center md:justify-center md:items-start py-10 md:py-10">
-                {{-- <p class="text-gray-700 text-2xl">{{$user->username}}</p> --}}
-
-                <p class="text-gray-800 text-sm mb-3 font-bold">
-                    0
-                    <span class="font-normal"> Seguidores </span>
+                <p class="text-gray-800 text-3xl mb-3 font-bold">
+                    <span class="font-normal"> Equipo: {{$teams->first()->name}} </span>
                 </p>
-
-                <p class="text-gray-800 text-sm mb-3 font-bold">
+                <p class="text-gray-800 text-lg mb-3 font-bold">
+                    <span class="font-normal"> Deuda </span>
                     0
-                    <span class="font-normal"> Siguiendo </span>
                 </p>
-
-                <p class="text-gray-800 text-sm mb-3 font-bold">
+                <p class="text-gray-800 text-lg mb-3 font-bold">
+                    <span class="font-normal"> Jugador con mas goles </span>
                     0
-                    <span class="font-normal"> Posts </span>
                 </p>
-
             </div>
         </div>
     </div>

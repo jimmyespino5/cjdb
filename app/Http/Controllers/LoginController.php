@@ -23,9 +23,12 @@ class LoginController extends Controller
             return back()->with('mensaje','Credenciales Incorrectas');
         }
        $user = auth()->user(); 
-        // return redirect()->route('dashboard', ['user'=>auth()->user()]);
-        return view('dashboard', [
-            'user'=>$user,
-        ]);
+       return redirect()->route('teams.index', auth()->user()->name);
+       //return to_route('dashboard', ['user' => auth()->user()]);
+
+
+        // return view('dashboard', [
+        //     'user'=>$user,
+        // ]);
     }
 }
