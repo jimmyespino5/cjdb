@@ -13,4 +13,8 @@ class Team extends Model
         'name',
         'logo'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
