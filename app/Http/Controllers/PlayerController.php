@@ -64,8 +64,11 @@ class PlayerController extends Controller
         return redirect()->route('players.index', auth()->user()->name);
     }
 
-    public function show(){
-    
+    public function show(Player $player){
+        return view('players.show', [
+            'user'=> auth()->user(),
+            'player'=> $player,
+        ]);
     }
     
     public function edit(Player $player){

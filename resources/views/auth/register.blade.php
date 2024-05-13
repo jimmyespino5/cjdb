@@ -47,6 +47,38 @@
                     @enderror
                 </div>
                 <div class="mb-5">
+                    <label for="phone" class="mb-2 block uppercase text-gray-500 font-bold">
+                        Telefono
+                    </label>
+                    <input 
+                        id="phone"
+                        name="phone"
+                        type="text"
+                        placeholder="Ingrese su numero de telefono"
+                        class="border p-3 w-full rounded-lg @error('phone') border-red-500 @enderror "
+                        value="{{old('phone')}}"
+                    />
+                    @error('phone')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center" >{{$message}}</p>
+                    @enderror
+                </div>
+                <div class="mb-5">
+                    <label for="team" class="mb-2 block uppercase text-gray-500 font-bold">
+                        Nombre del equipo
+                    </label>
+                    <input 
+                        id="team"
+                        name="team"
+                        type="text"
+                        placeholder="Ingrese nombre de su equipo"
+                        class="border p-3 w-full rounded-lg @error('team') border-red-500 @enderror "
+                        value="{{old('team')}}"
+                    />
+                    @error('team')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center" >{{$message}}</p>
+                    @enderror
+                </div>
+                <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
                         Email
                     </label>

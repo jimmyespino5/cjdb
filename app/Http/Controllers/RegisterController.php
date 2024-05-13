@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -28,8 +29,16 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'cedula' => $request->cedula,
+            'phone' => $request->phone,
             'email' => $request->email,
             'password' => $request->password,
+        ]);
+
+        //dd($user->id);
+        $teams = Team::create([
+            'name' => $request->team,
+            'logo' => null,
+            'user_id' => $user->id,
         ]);
 
         //Autenticar Usuario
@@ -42,6 +51,7 @@ class RegisterController extends Controller
             auth()->attempt($request->only('email','password'));
             
         //Redireccionar
-        return view('dashboard',['user'=> $user]);
+        //return view('dashboard',['user'=> $user, 'teams'=>$teams]);
+        return redirect()->route('teams.index', auth()->user()->name);
     }
 }

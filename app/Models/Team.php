@@ -11,7 +11,8 @@ class Team extends Model
 
     protected $fillable =[
         'name',
-        'logo'
+        'logo',
+        'user_id',
     ];
 
     public function user(){
