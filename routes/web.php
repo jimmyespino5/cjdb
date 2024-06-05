@@ -6,7 +6,9 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TournamentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,5 +29,18 @@ Route::post('/player', [PlayerController::class, 'store'])->name('players.store'
 Route::get('/players/{player}', [PlayerController::class, 'edit'])->name('players.edit');
 Route::put('/players/{player}', [PlayerController::class, 'update'])->name('players.update');
 Route::delete('/players/{player}', [PlayerController::class, 'destroy'])->name('players.destroy');
+
+Route::get('/{user:name}/tournments', [TournamentController::class, 'index'])->name('tournments.index');
+Route::get('/tournments/create', [TournamentController::class, 'create'])->name('tournments.create');
+Route::post('/tournment', [TournamentController::class, 'store'])->name('tournments.store');
+Route::get('/tournments/{tournment}', [TournamentController::class, 'edit'])->name('tournments.edit');
+Route::put('/tournments/{tournment}', [TournamentController::class, 'update'])->name('tournments.update');
+Route::delete('/tournments/{tournment}', [TournamentController::class, 'destroy'])->name('tournments.destroy');
+
+
+
+
+Route::get('/{user:name}/payments', [PaymentController::class, 'index'])->name('payments.index');
+
 
 Route::post('imagenes', [ImageController::class, 'store'])->name('imagenes.store');
