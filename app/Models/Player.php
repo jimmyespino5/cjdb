@@ -23,4 +23,8 @@ class Player extends Model
     public function team(){
         return $this->belongsTo(Team::class);
     }
+
+    public function amarillas(){
+        return $this->hasMany(Card::class);
+    }
 }

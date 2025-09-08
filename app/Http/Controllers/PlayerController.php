@@ -18,21 +18,41 @@ class PlayerController extends Controller
     public function index(){
         
         $team=Team::where('user_id',auth()->user()->id)->get();
+        //dd($team->first()->id); 
         $players = Player::where('team_id', $team->first()->id)->orderby('dorsal','asc')->get();
         return view('players.index', [
             'players'=>$players,
+            'msg'=>"",
             'user'=> auth()->user(),
         ]);
     }
 
     public function create(){
-        return view('players.create', [
-            'user'=> auth()->user(),
-        ]);
+
+        //dd(auth()->user()->teams->first()->id);
+        if (auth()->user()->teams->count() == 1) {
+            $players = Player::where('team_id', auth()->user()->teams->first()->id)->orderby('dorsal','asc')->get();
+            if ($players->count() < 12) {
+                return view('players.create', [
+                    'user'=> auth()->user(),
+                ]);
+            } else{
+                return view('players.index', [
+                    'players'=>$players,
+                    'msg'=>"Ya alcanzo el numero maximo de jugadores",
+                    'user'=> auth()->user(),
+                ]);
+            }
+         } else {
+            # code...
+        }
+        
+
+
     }
 
     public function store(Request $request){
-        
+
         $this->validate($request, [
             'cedula'=> 'required|max:8',
             'name'=> 'required|min:3|max:30',
@@ -56,7 +76,7 @@ class PlayerController extends Controller
             'name' => $request->name,
             'dorsal' => $request->dorsal,
             'photo' => $request->imagen,
-            'team_id' => auth()->user()->id,
+            'team_id' => $request->team,
         ]);
         
         
@@ -103,7 +123,6 @@ class PlayerController extends Controller
             'name' => $request->name,
             'dorsal' => $request->dorsal,
             'photo' => $request->imagen,
-            'team_id' => auth()->user()->id,
         ]);
         return redirect()->route('players.index', auth()->user()->name);
     }

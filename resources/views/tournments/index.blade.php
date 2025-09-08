@@ -21,12 +21,18 @@
     <div class="grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6">
         @foreach ($tournments as $tournment)
                 <div class="flex flex-col gap-2 w-48 justify-evenly flex-wrap border p-5">
+                    @if ($tournment->available)
+                        <h2 class="font-black text-center text-xl bg-green-500 rounded-lg">Habilitado</h2>
+                    @else
+                        <h2 class="font-black text-center text-xl bg-red-500 rounded-lg">Deshabilitado</h2>
+                    @endif
                     <p class="font-mono font-bold">Nombre: <span class="font-normal">{{$tournment->name}}</span></p>
                     <p class="font-mono font-bold">Equipos: <span class="font-normal">{{$tournment->teams}}</span></p>
+                    <p class="font-mono font-bold">Equipos Inscritos: <span class="font-normal">{{$tournment->equipos()->count()}}</span></p>
                     <p class="font-mono font-bold">Fecha Inicio: <span class="font-normal">{{$tournment->date}}</span></p>
                     <p class="font-mono font-bold">Disponible: <span class="font-normal"> {{$tournment->available ? "Si" : "No"}}</span></p>
                     <p class="font-mono font-bold">Cantidad de grupos: <span class="font-normal"> {{$tournment->groups}}</span></p>
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 flex-wrap">
                         <a href="{{route('tournments.edit', $tournment)}}" class="bg-blue-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">Editar</a>
                         <form action="{{route('tournments.destroy', $tournment)}}" method="POST" >
                             @method('DELETE')
@@ -37,6 +43,24 @@
                             class="bg-red-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"  
                             />
                         </form>
+                        <a href="{{route('tournments.groups', $tournment)}}" class="bg-green-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">Grupos</a>
+                        @if ($tournment->available)
+                            @if ($tournment->registration)
+                                <form action="{{route('tournments.open')}}" method="POST" novalidate enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="submit" value="Cerrar inscripciones" class="bg-red-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">
+                                    <input type="hidden" id="open" name="open" value="0">
+                                    <input type="hidden" id="tournment" name="tournment" value="{{$tournment->id}}">
+                                </form>
+                            @else
+                                <form action="{{route('tournments.open')}}" method="POST" novalidate enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="submit" value="Abrir inscripciones" class="bg-green-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">
+                                    <input type="hidden" id="open" name="open" value="1">
+                                    <input type="hidden" id="tournment" name="tournment" value="{{$tournment->id}}">
+                                </form>
+                            @endif
+                        @endif
                     </div>
                 </div>
         @endforeach

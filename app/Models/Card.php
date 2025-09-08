@@ -16,4 +16,6 @@ class Card extends Model
         'solvent',
         'journeys'
     ];
+
+    
 }

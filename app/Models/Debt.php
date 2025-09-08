@@ -10,7 +10,7 @@ class Debt extends Model
     use HasFactory;
 
     protected $fillable = [
-        'team',
+        'team_id',
         'type',
         'cost',
         'observation',

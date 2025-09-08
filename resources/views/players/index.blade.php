@@ -1,23 +1,35 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Equipos del delegado {{$user->name}}
+    Jugadores de {{$user->teams->first()->name}}
+    @if ($msg)
+        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center" >{{$msg}}</p>
+    @endif
+
+    
+
 @endsection
 
 @section('contenido')
     
 <section class="container mx-auto mt-10">
     <div>
+        
         <nav class="flex gap-2 items-center flex-wrap md:flex-nowrap mb-5">
             <a href="{{route('players.create')}}"
-                class="flex items-center gap-2 bg-white border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer">
+               class="flex items-center gap-2 bg-white border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer"
+               id="btn-agregar"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
                 Agregar Jugador
             </a>
+
+            <p class="font-black text-center text-xl">{{$players->count()}}/12 Jugadores inscritos</p>
         </nav>
     </div>
+
     <div class="grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6">
 
         @foreach ($players as $player)

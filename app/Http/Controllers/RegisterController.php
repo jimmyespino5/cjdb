@@ -32,6 +32,7 @@ class RegisterController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => $request->password,
+            'role' => 1,
         ]);
 
         //dd($user->id);
@@ -41,6 +42,7 @@ class RegisterController extends Controller
             'user_id' => $user->id,
         ]);
 
+       
         //Autenticar Usuario
         // auth()->attempt([
         //     'email' => $request->email,

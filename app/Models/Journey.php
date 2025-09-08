@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Journey extends Model
 {
     use HasFactory;
+
+    protected $fillable =[
+        'id',
+        'number',
+        'tournament_id'
+    ];
 }
