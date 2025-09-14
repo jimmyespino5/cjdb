@@ -8,7 +8,7 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    server: {
-    host: '192.168.0.111',
-    },
+    // server: {
+    // host: '192.168.0.111',
+    // },
 });

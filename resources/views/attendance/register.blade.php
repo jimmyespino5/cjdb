@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido')
-<div class="md:flex md: items-center md:justify-center md:gap-10 md:items-center md:col">
+{{-- <div class="md:flex md: items-center md:justify-center md:gap-10 md:items-center md:col">
     <h1>Web NFC Sample</h1>
     <p class="availability">
       Available in <a target="_blank" href="https://www.chromestatus.com/feature/6261030015467520">Chrome 89+</a> |
@@ -20,10 +20,11 @@ inches). The current scope is limited to NDEF, a lightweight binary message
 format. Low-level I/O operations (e.g. ISO-DEP, NFC-A/B, NFC-F) and Host-based
 Card Emulation (HCE) are not supported within the current scope.
 </p>
+</div> --}}
 
-<button id="scanButton">Scan</button>
-<button id="writeButton">Write</button>
-<button id="makeReadOnlyButton">Make Read-Only</button>
+<button id="scanButton" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Scan</button>
+<button id="writeButton" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Write</button>
+<button id="makeReadOnlyButton" class="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Make Read-Only</button>
 
 <script>
   var ChromeSamples = {
@@ -85,49 +86,49 @@ if (!("NDEFReader" in window))
     
       <script>
       
-      scanButton.addEventListener("click", async () => {
-  log("User clicked scan button");
+  scanButton.addEventListener("click", async () => {
+    log("User clicked scan button");
 
-  try {
-    const ndef = new NDEFReader();
-    await ndef.scan();
-    log("> Scan started");
+    try {
+      const ndef = new NDEFReader();
+      await ndef.scan();
+      log("> Scan started");
 
-    ndef.addEventListener("readingerror", () => {
-      log("Argh! Cannot read data from the NFC tag. Try another one?");
-    });
+      ndef.addEventListener("readingerror", () => {
+        log("Argh! Cannot read data from the NFC tag. Try another one?");
+      });
 
-    ndef.addEventListener("reading", ({ message, serialNumber }) => {
-      log(`> Serial Number: ${serialNumber}`);
-      log(`> Records: (${message.records.length})`);
-    });
-  } catch (error) {
-    log("Argh! " + error);
-  }
-});
+      ndef.addEventListener("reading", ({ message, serialNumber }) => {
+        log(`> Serial Number: ${serialNumber}`);
+        log(`> Records: (${message.records.length})`);
+      });
+    } catch (error) {
+      log("Argh! " + error);
+    }
+  });
 
-writeButton.addEventListener("click", async () => {
-  log("User clicked write button");
+  writeButton.addEventListener("click", async () => {
+    log("User clicked write button");
 
-  try {
-    const ndef = new NDEFReader();
-    await ndef.write("Hello world!");
-    log("> Message written");
-  } catch (error) {
-    log("Argh! " + error);
-  }
-});
+    try {
+      const ndef = new NDEFReader();
+      await ndef.write("Hello world!");
+      log("> Message written");
+    } catch (error) {
+      log("Argh! " + error);
+    }
+  });
 
-makeReadOnlyButton.addEventListener("click", async () => {
-  log("User clicked make read-only button");
+  makeReadOnlyButton.addEventListener("click", async () => {
+    log("User clicked make read-only button");
 
-  try {
-    const ndef = new NDEFReader();
-    await ndef.makeReadOnly();
-    log("> NFC tag has been made permanently read-only");
-  } catch (error) {
-    log("Argh! " + error);
-  }
-});
+    try {
+      const ndef = new NDEFReader();
+      await ndef.makeReadOnly();
+      log("> NFC tag has been made permanently read-only");
+    } catch (error) {
+      log("Argh! " + error);
+    }
+  });
 </script>
 @endsection
