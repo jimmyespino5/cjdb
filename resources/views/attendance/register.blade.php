@@ -40,8 +40,8 @@ Card Emulation (HCE) are not supported within the current scope.
       document.querySelector('#log').textContent = '';
     },
 
-    setAttendance: function() {
-      axios.get('{{ url('/escuela/categoriesteam/')}}/'+valorSeleccionado, {
+    setAttendance: function(student_id) {
+      axios.post('{{ url('/escuela/asistencia/')}}/'+student_id, {
             headers: {
                 'X-CSRF-TOKEN': token
             }
@@ -124,6 +124,7 @@ if (!("NDEFReader" in window))
             const decoder = new TextDecoder();
             const url = decoder.decode(record.data);
             log(`> message: (${url})`);
+            setAttendance(url);
         }
 
       });

@@ -86,7 +86,7 @@
                     <h1 class="font-black text-center text-2xl">Inscribir</h1>
                 </div>
                 <div class="flex flex-col justify-between size-40 md:size-80 px-5 ">
-                    <a href="{{route('tournments.teams', [$tournment])}}" >
+                    <a href="#" >
                         <img src="{{asset('img/buscar.png')}}" alt="imagen equipos" class="w-full">
                     </a>
                     <h1 class="font-black text-center text-2xl">Buscar Jugador</h1>
