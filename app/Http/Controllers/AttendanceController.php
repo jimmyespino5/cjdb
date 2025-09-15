@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class AttendanceController extends Controller
@@ -22,7 +23,8 @@ class AttendanceController extends Controller
 
 
     public function store(Request $request, $student_id){
-        
+        Log::info('Datos recibidos:', $request->all());
+
         Attendance::create([
             'student_id' => $student_id,
             'date' => Carbon::now()->toDateString(),

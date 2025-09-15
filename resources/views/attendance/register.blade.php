@@ -126,7 +126,11 @@ if (!("NDEFReader" in window))
                 student_id: url,
                 hora_escaneo: hora
               })
+            })
+            .catch(error => {
+              log("❌ Error al enviar:", error);
             });
+            
             //setAttendance(url);
       }
 
