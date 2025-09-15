@@ -51,15 +51,8 @@ Card Emulation (HCE) are not supported within the current scope.
            
             });
         .catch(error => {
-          console.error("La solicitud falló:", error);
-          if (error.response) {
-            console.error("Datos de error del servidor:", error.response.data);
-            console.error("Código de estado del servidor:", error.response.status);
-          } else if (error.request) {
-            console.error("Error de red: No se recibió respuesta del servidor.");
-          } else {
-            console.error("Error de configuración:", error.message);
-          }
+          document.querySelector('#log').textContent = "La solicitud falló:", error;
+          
         })
 
     },
