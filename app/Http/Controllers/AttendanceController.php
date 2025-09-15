@@ -28,6 +28,6 @@ class AttendanceController extends Controller
             'date' => Carbon::now()->toDateString(),
             'time' => Carbon::now()->format('H:i:s'),
         ]);
-        return back();
+        return response()->json(['status' => 'ok']);
     }
 }
