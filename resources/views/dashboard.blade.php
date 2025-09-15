@@ -58,10 +58,14 @@
                     <h1 class="font-black text-center text-2xl">Torneos</h1>
                 </div>
                 <div class="flex flex-col justify-between size-40 md:size-80 px-5 ">
-                    <a href="{{route('tournments.teams', [$tournment])}}" >
-                        <img src="{{asset('img/equipos.jpg')}}" alt="imagen equipos" class="w-full">
-                    </a>
-                    <h1 class="font-black text-center text-2xl">Equipos</h1>
+                    @if ($tournment)
+                        <a href="{{route('tournments.teams', [$tournment])}}" >
+                            <img src="{{asset('img/equipos.jpg')}}" alt="imagen equipos" class="w-full">
+                        </a>
+                        <h1 class="font-black text-center text-2xl">Equipos</h1>
+                    @else
+                        <h1 class="font-black text-center text-2xl">No se han creado torneos</h1>
+                    @endif
                 </div>
                 <div class="flex flex-col justify-between size-40 md:size-80 px-5 ">
                     <a href="{{route('payments.index', auth()->user()->name)}}">
