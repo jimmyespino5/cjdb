@@ -22,11 +22,11 @@ class AttendanceController extends Controller
     }
 
 
-    public function store(Request $request, $student_id){
+    public function store(Request $request){
         Log::info('Datos recibidos:', $request->all());
 
         Attendance::create([
-            'student_id' => $student_id,
+            'student_id' => $request->student_id,
             'date' => Carbon::now()->toDateString(),
             'time' => Carbon::now()->format('H:i:s'),
         ]);
