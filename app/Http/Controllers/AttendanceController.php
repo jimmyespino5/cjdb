@@ -22,9 +22,7 @@ class AttendanceController extends Controller
 
 
     public function store(Request $request, $student_id){
-        $this->validate($request, [
-            'student_id'=> 'required',
-        ]);
+        
         Attendance::create([
             'student_id' => $student_id,
             'date' => Carbon::now()->toDateString(),
