@@ -101,6 +101,14 @@ if (!("NDEFReader" in window))
       ndef.addEventListener("reading", ({ message, serialNumber }) => {
         log(`> Serial Number: ${serialNumber}`);
         log(`> Records: (${message.records.length})`);
+
+        NdefRecord[] records = message.getRecords();
+        for (NdefRecord record : records) {
+            byte[] payload = record.getPayload();
+            String text = new String(payload, Charset.forName("UTF-8"));
+            Log.d("NFC", "Contenido: " + text);
+        }
+
       });
     } catch (error) {
       log("Argh! " + error);
