@@ -116,7 +116,7 @@ if (!("NDEFReader" in window))
             log(`> message: (${url})`);
             const hora = new Date().toLocaleTimeString("es-VE", { hour12: false });
       
-            fetch("/escuela/asistencia/", {
+            fetch("/escuela/asistencia", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
