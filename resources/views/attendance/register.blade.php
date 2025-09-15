@@ -114,22 +114,22 @@ if (!("NDEFReader" in window))
             const decoder = new TextDecoder();
             const url = decoder.decode(record.data);
             log(`> message: (${url})`);
+            const hora = new Date().toLocaleTimeString("es-VE", { hour12: false });
+      
+            fetch("/escuela/asistencia/"+url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+              },
+              body: JSON.stringify({
+                student_id: url,
+                hora_escaneo: hora
+              })
+            });
             //setAttendance(url);
       }
 
-      const hora = new Date().toLocaleTimeString("es-VE", { hour12: false });
-
-      fetch("/escuela/asistencia/"+url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-        },
-        body: JSON.stringify({
-          student_id: url,
-          hora_escaneo: hora
-        })
-      });
 
 
       });
