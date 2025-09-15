@@ -23,14 +23,20 @@ class AttendanceController extends Controller
 
 
     public function store(Request $request){
-        Log::info('Datos recibidos:', $request->all());
+         try {
 
-        Attendance::create([
-            'student_id' => $request->student_id,
-            'date' => Carbon::now()->toDateString(),
-            'time' => Carbon::now()->format('H:i:s'),
-        ]);
-        return response()->json(['status' => 'ok']);
+            Log::info('Datos recibidos:', $request->all());
 
+            Attendance::create([
+                'student_id' => $request->student_id,
+                'date' => Carbon::now()->toDateString(),
+                'time' => Carbon::now()->format('H:i:s'),
+            ]);
+            return response()->json(['status' => 'ok']);
+
+        } catch (\Exception $e) {
+            Log::error('❌ Error al guardar asistencia: ' . $e->getMessage());
+            return response()->json(['status' => 'error', 'message' => 'No se pudo registrar la asistencia'], 500);
+        }
     }
 }
