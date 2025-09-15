@@ -129,22 +129,10 @@ if (!("NDEFReader" in window))
             const decoder = new TextDecoder();
             const url = decoder.decode(record.data);
             log(`> message: (${url})`);
-           // setAttendance(url);
+            //setAttendance(url);
       }
 
-      axios.post('{{ url('/escuela/asistencia/')}}/'+url, {
-            headers: {
-                'X-CSRF-TOKEN': token
-            }
-        })
-        .then(response => {
-          document.querySelector('#log').textContent = 'Asistencia Exitosa';
-           
-            });
-        .catch(error => {
-          document.querySelector('#log').textContent = "La solicitud falló:", error;
-          
-        })
+      
 
       });
     } catch (error) {
