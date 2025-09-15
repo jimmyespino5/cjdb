@@ -109,6 +109,9 @@ if (!("NDEFReader" in window))
           // }
           for (const record of message.records) {
             log(`> Type: (${record.recordType})`);
+            const decoder = new TextDecoder();
+            const url = decoder.decode(record.data);
+            log(`> message: (${url})`);
         }
 
       });
