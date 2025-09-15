@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -20,14 +21,14 @@ class AttendanceController extends Controller
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request, $student_id){
         $this->validate($request, [
             'student_id'=> 'required',
         ]);
         Attendance::create([
-            'student_id' => $request->name,
-            'date' => $request->year_init,
-            'time' => $request->year_finish,
+            'student_id' => $student_id,
+            'date' => Carbon::now()->toDateString(),
+            'time' => Carbon::now()->format('H:i:s'),
         ]);
         return back();
     }
