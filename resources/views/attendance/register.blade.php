@@ -103,10 +103,13 @@ if (!("NDEFReader" in window))
         log(`> Records: (${message.records})`);
         // NdefRecord[] records = message.getRecords();
         // for (NdefRecord record : records) {
-        //     byte[] payload = record.getPayload();
-        //     String text = new String(payload, Charset.forName("UTF-8"));
-        //     Log.d("NFC", "Contenido: " + text);
-        // }
+          //     byte[] payload = record.getPayload();
+          //     String text = new String(payload, Charset.forName("UTF-8"));
+          //     Log.d("NFC", "Contenido: " + text);
+          // }
+          for (const record of message.records) {
+            log(`> Type: (${record.recordType})`);
+        }
 
       });
     } catch (error) {
