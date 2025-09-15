@@ -86,5 +86,5 @@ Route::delete('escuela/teamstore/{team}', [CategoryController::class, 'destroyte
 Route::get('escuela/schoolpayments', [SchoolPaymentController::class, 'index'])->name('schoolpayments.index');
 Route::get('escuela/tournaments', [TournamentController::class, 'school'])->name('tournaments.school');
 Route::get('escuela/asistencia', [AttendanceController::class, 'register'])->name('attendances.register');
-Route::post('escuela/asistencia', [AttendanceController::class, 'store'])->name('attendances.store');
+Route::post('escuela/asistencia/{student}', [AttendanceController::class, 'store'])->name('attendances.store');
 
