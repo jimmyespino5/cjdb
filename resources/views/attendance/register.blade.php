@@ -40,22 +40,7 @@ Card Emulation (HCE) are not supported within the current scope.
       document.querySelector('#log').textContent = '';
     },
 
-    setAttendance: function(student_id) {
-      axios.post('{{ url('/escuela/asistencia/')}}/'+student_id, {
-            headers: {
-                'X-CSRF-TOKEN': token
-            }
-        })
-        .then(response => {
-          document.querySelector('#log').textContent = 'Asistencia Exitosa';
-           
-            });
-        .catch(error => {
-          document.querySelector('#log').textContent = "La solicitud falló:", error;
-          
-        })
-
-    },
+    
 
     setStatus: function(status) {
       document.querySelector('#status').textContent = status;
