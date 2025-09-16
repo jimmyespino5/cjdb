@@ -119,7 +119,7 @@ if (!("NDEFReader" in window))
               },
               body: JSON.stringify({
                 student_id: url,
-                hora_escaneo: hora
+                //hora_escaneo: hora
               })
             })
             .then(response => {
