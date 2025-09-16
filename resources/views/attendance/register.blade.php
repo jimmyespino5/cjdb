@@ -90,32 +90,26 @@ if (!("NDEFReader" in window))
       <script>
       
   scanButton.addEventListener("click", async () => {
-    log("User clicked scan button");
+    //log("User clicked scan button");
 
     try {
       const ndef = new NDEFReader();
       await ndef.scan();
-      log("> Scan started");
+      log("> Escaneando");
 
       ndef.addEventListener("readingerror", () => {
         log("Argh! Cannot read data from the NFC tag. Try another one?");
       });
 
       ndef.addEventListener("reading", ({ message, serialNumber }) => {
-        log(`> Serial Number: ${serialNumber}`);
-        log(`> Records: (${message.records})`);
-        // NdefRecord[] records = message.getRecords();
-        // for (NdefRecord record : records) {
-          //     byte[] payload = record.getPayload();
-          //     String text = new String(payload, Charset.forName("UTF-8"));
-          //     Log.d("NFC", "Contenido: " + text);
-          // }
+        // log(`> Serial Number: ${serialNumber}`);
+        // log(`> Records: (${message.records})`);
           for (const record of message.records) {
-            log(`> Type: (${record.recordType})`);
-            const decoder = new TextDecoder();
-            const url = decoder.decode(record.data);
-            log(`> message: (${url})`);
-            const hora = new Date().toLocaleTimeString("es-VE", { hour12: false });
+            // log(`> Type: (${record.recordType})`);
+            // const decoder = new TextDecoder();
+            // const url = decoder.decode(record.data);
+            // log(`> message: (${url})`);
+            // const hora = new Date().toLocaleTimeString("es-VE", { hour12: false });
       
             fetch("/escuela/asistencia", {
               method: "POST",
@@ -135,7 +129,7 @@ if (!("NDEFReader" in window))
             .then(data => {
               // Aquí agregas algo al div
               const div = document.getElementById("student"); // Asegúrate de que este ID exista
-              div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${data.student || url}</p>`;
+              div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${data.name || url}</p>`;
             })
             .catch(error => {
               log("❌ Error al enviar:", error);

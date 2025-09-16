@@ -35,7 +35,7 @@ class AttendanceController extends Controller
             ]);
 
             $student= Student::find($request->student_id);
-            return response()->json(['student' => $student->name]);
+            return response()->json(['name' => $student->name, 'lastname' => $student->lastname]);
 
         } catch (\Exception $e) {
             Log::error('❌ Error al guardar asistencia: ' . $e->getMessage());
