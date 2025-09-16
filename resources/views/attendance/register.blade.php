@@ -106,8 +106,8 @@ if (!("NDEFReader" in window))
         // log(`> Records: (${message.records})`);
           for (const record of message.records) {
             // log(`> Type: (${record.recordType})`);
-            // const decoder = new TextDecoder();
-            // const url = decoder.decode(record.data);
+            const decoder = new TextDecoder();
+            const url = decoder.decode(record.data);
             // log(`> message: (${url})`);
             // const hora = new Date().toLocaleTimeString("es-VE", { hour12: false });
       
