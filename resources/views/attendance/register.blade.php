@@ -129,12 +129,11 @@ if (!("NDEFReader" in window))
             .then(data => {
               // Aquí agregas algo al div
               const div = document.getElementById("student"); // Asegúrate de que este ID exista
-              // if (data.registrado) {
-              //   div.innerHTML += `<p>✅ La asistencia de ${data.name || url} ya fue registrada anteriormente</p>`;
-              // } else {
-              //   div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${data.name || url}</p>`;
-              // }
-              div.innerHTML += `<p>✅ prueba de ${data.name || url}</p>`;
+              if (data.registrado) {
+                div.innerHTML += `<p>✅ La asistencia de ${data.name || url} ya fue registrada anteriormente</p>`;
+              } else {
+                div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${data.name || url}</p>`;
+              }
             })
             .catch(error => {
               log("❌ Error al enviar:", error);
