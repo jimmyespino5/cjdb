@@ -27,7 +27,7 @@ class AttendanceController extends Controller
          try {
             $registrado = 0;
             $existe = Attendance::where('student_id',$request->student_id)
-                                ->where('date',Carbon::now()->toDateString())->get()->first();
+                                ->where('date',Carbon::now()->toDateString())->get();
 //            Log::info('Datos recibidos:', $request->all());
             Log::info('Datos de estudiante:', $existe);
             if ($existe) {
