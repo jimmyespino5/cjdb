@@ -34,7 +34,7 @@ class AttendanceController extends Controller
                 'time' => Carbon::now()->format('H:i:s'),
             ]);
 
-            $student= Student::where('id',$request->student_id)->get()->first();
+            $student= Student::find($request->student_id);
             return response()->json(['student' => $student->name]);
 
         } catch (\Exception $e) {

@@ -135,7 +135,7 @@ if (!("NDEFReader" in window))
             .then(data => {
               // Aquí agregas algo al div
               const div = document.getElementById("student"); // Asegúrate de que este ID exista
-              div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${student || url}</p>`;
+              div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${data.student || url}</p>`;
             })
             .catch(error => {
               log("❌ Error al enviar:", error);
