@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Student;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -27,11 +28,13 @@ class AttendanceController extends Controller
 
             Log::info('Datos recibidos:', $request->all());
 
-            $student= Attendance::create([
+            Attendance::create([
                 'student_id' => $request->student_id,
                 'date' => Carbon::now()->toDateString(),
                 'time' => Carbon::now()->format('H:i:s'),
             ]);
+
+            $student= Student::where('id',$request->student_id)->get()->first();
             return response()->json(['student' => $student->name]);
 
         } catch (\Exception $e) {
