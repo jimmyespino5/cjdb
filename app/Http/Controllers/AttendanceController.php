@@ -32,7 +32,7 @@ class AttendanceController extends Controller
                 'date' => Carbon::now()->toDateString(),
                 'time' => Carbon::now()->format('H:i:s'),
             ]);
-            return response()->json(['student' => $student]);
+            return response()->json(['student' => $student->name]);
 
         } catch (\Exception $e) {
             Log::error('❌ Error al guardar asistencia: ' . $e->getMessage());
