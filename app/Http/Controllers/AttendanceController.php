@@ -25,17 +25,23 @@ class AttendanceController extends Controller
 
     public function store(Request $request){
          try {
-
-            Log::info('Datos recibidos:', $request->all());
-
-            Attendance::create([
-                'student_id' => $request->student_id,
-                'date' => Carbon::now()->toDateString(),
-                'time' => Carbon::now()->format('H:i:s'),
-            ]);
+            $registrado = 0;
+            $existe = Attendance::where('student_id',$request->student_id)
+                                ->where('date',Carbon::now()->toDateString());
+//            Log::info('Datos recibidos:', $request->all());
+            if ($existe) {
+                $registrado = 1;
+            } else {
+                Attendance::create([
+                    'student_id' => $request->student_id,
+                    'date' => Carbon::now()->toDateString(),
+                    'time' => Carbon::now()->format('H:i:s'),
+                ]);
+            }
+            
 
             $student= Student::find($request->student_id);
-            return response()->json(['name' => $student->name, 'lastname' => $student->lastname]);
+            return response()->json(['name' => $student->name, 'lastname' => $student->lastname, 'registrado' => $registrado]);
 
         } catch (\Exception $e) {
             Log::error('❌ Error al guardar asistencia: ' . $e->getMessage());

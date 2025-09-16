@@ -107,7 +107,7 @@ if (!("NDEFReader" in window))
           for (const record of message.records) {
             // log(`> Type: (${record.recordType})`);
             const decoder = new TextDecoder();
-            const url = decoder.decode(record.data);
+            const student = decoder.decode(record.data);
             // log(`> message: (${url})`);
             // const hora = new Date().toLocaleTimeString("es-VE", { hour12: false });
       
@@ -118,7 +118,7 @@ if (!("NDEFReader" in window))
                 "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
               },
               body: JSON.stringify({
-                student_id: url,
+                student_id: student,
                 //hora_escaneo: hora
               })
             })
@@ -129,7 +129,11 @@ if (!("NDEFReader" in window))
             .then(data => {
               // Aquí agregas algo al div
               const div = document.getElementById("student"); // Asegúrate de que este ID exista
-              div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${data.name || url}</p>`;
+              if (data.registrado) {
+                div.innerHTML += `<p>✅ La asistencia de ${data.name || url} ya fue registrada anteriormente</p>`;
+              } else {
+                div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${data.name || url}</p>`;
+              }
             })
             .catch(error => {
               log("❌ Error al enviar:", error);
