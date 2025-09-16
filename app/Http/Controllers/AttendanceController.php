@@ -27,12 +27,12 @@ class AttendanceController extends Controller
 
             Log::info('Datos recibidos:', $request->all());
 
-            Attendance::create([
+            $student= Attendance::create([
                 'student_id' => $request->student_id,
                 'date' => Carbon::now()->toDateString(),
                 'time' => Carbon::now()->format('H:i:s'),
             ]);
-            return response()->json(['status' => 'ok']);
+            return response()->json(['student' => $student]);
 
         } catch (\Exception $e) {
             Log::error('❌ Error al guardar asistencia: ' . $e->getMessage());

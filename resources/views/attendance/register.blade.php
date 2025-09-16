@@ -61,6 +61,7 @@ Card Emulation (HCE) are not supported within the current scope.
   <div id="content"></div>
   <div id="status"></div>
   <pre id="log"></pre>
+  <div id="student"></div>
 </div>
 
 
@@ -126,6 +127,15 @@ if (!("NDEFReader" in window))
                 student_id: url,
                 hora_escaneo: hora
               })
+            })
+            .then(response => {
+              if (!response.ok) throw new Error("Error en la respuesta del servidor");
+              return response.json(); // o response.text() si no esperas JSON
+            })
+            .then(data => {
+              // Aquí agregas algo al div
+              const div = document.getElementById("student"); // Asegúrate de que este ID exista
+              div.innerHTML += `<p>✅ Asistencia registrada para el estudiante ${student || url}</p>`;
             })
             .catch(error => {
               log("❌ Error al enviar:", error);
